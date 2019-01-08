@@ -5,7 +5,8 @@ import {
   ViewChild,
   Renderer2,
   Output,
-  EventEmitter
+  EventEmitter,
+  HostListener
 } from "@angular/core";
 import { country } from "./codes";
 
@@ -32,6 +33,15 @@ export class PhoneNumberInputComponent implements OnInit {
   > = new EventEmitter();
 
   @ViewChild("flagDropdown", { read: ElementRef }) flagDropdown: ElementRef;
+  
+  @HostListener('window:click', ['$event']) 
+  onClick(event) {
+    const className = event.target.className;
+    if (!className.includes('dropbtn')) {
+      if(!event.target.className.includes('search-form-control'))
+        this.render.removeClass(this.flagDropdown.nativeElement, "show");
+    }
+  }
 
   constructor(private render: Renderer2) {}
 
@@ -44,6 +54,7 @@ export class PhoneNumberInputComponent implements OnInit {
     if (this.flagDropdown.nativeElement.classList.contains("show")) {
       this.render.removeClass(this.flagDropdown.nativeElement, "show");
     } else {
+      this.formatFlags();
       this.render.addClass(this.flagDropdown.nativeElement, "show");
     }
   }
