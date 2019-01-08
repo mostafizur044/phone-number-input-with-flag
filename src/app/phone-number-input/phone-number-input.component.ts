@@ -1,4 +1,4 @@
-  import {
+import {
   Component,
   OnInit,
   ElementRef,
@@ -33,21 +33,12 @@ export class PhoneNumberInputComponent implements OnInit {
   > = new EventEmitter();
 
   @ViewChild("flagDropdown", { read: ElementRef }) flagDropdown: ElementRef;
-  
-  @HostListener('window:click', ['$event']) 
-  onClick(event) {
-    const className = event.target.className;
-    if (!className.includes('dropbtn')) {
-      if(!event.target.className.includes('search-form-control'))
-        this.render.removeClass(this.flagDropdown.nativeElement, "show");
-    }
-  }
 
-  @HostListener('window:click', ['$event']) 
+  @HostListener("window:click", ["$event"])
   onClick(event) {
     const className = event.target.className;
-    if (!className.includes('dropbtn')) {
-      if(!event.target.className.includes('search-form-control'))
+    if (!className.includes("dropbtn")) {
+      if (!event.target.className.includes("search-form-control"))
         this.render.removeClass(this.flagDropdown.nativeElement, "show");
     }
   }

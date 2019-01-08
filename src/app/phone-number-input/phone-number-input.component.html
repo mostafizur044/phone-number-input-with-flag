@@ -2,11 +2,12 @@
   <div class="main-container-box">
     <div class="dropdown-container-box">
       <div class="dropdown">
-        <button class="dropbtn" (click)="searchInput.value=''; onDropDownClick()"><img class="dropbtn-part" [src]="'./assets/img/admin/flags/' + selectedFlag?.img" [alt]="selectedFlag?.code"></button>
+        <button class="dropbtn" (click)="searchInput.value=''; onDropDownClick()"><img class="dropbtn-part" [src]="'./assets/flags/' + selectedFlag?.img"
+            [alt]="selectedFlag?.code"></button>
         <div #flagDropdown class="dropdown-content">
           <input type="text" autocomplete="off" class="search-form-control" name="search" ngModel #searchInput
             (ngModelChange)="search(searchInput.value)">
-          <span *ngFor="let f of flags" (click)=" onFlageSelect(f)"><img [src]="'./assets/img/admin/flags/' + f?.img" [alt]="f.code">{{f.name}}</span>
+          <span *ngFor="let f of flags" (click)=" onFlageSelect(f)"><img [src]="'./assets/flags/' + f?.img" [alt]="f.code">{{f.name}}</span>
         </div>
       </div>
     </div>
