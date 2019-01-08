@@ -15,7 +15,7 @@
     </div>
     <div class="input-container-box">
       <input type="text" autocomplete="off" class="custom-form-control" name="number" ngModel #numberInput (blur)="check(numberInput.value)"
-        (keypress)="isNumberKey($event)" maxlength="10" (ngModelChange)="onNumberPress(numberInput.value)">
+        phoneNumberOnly maxlength="10" (ngModelChange)="onNumberPress(numberInput.value)">
     </div>
   </div>
   <small class="custom-form-control-error" *ngIf="invalid">Please Enter Valid Number</small>

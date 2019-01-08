@@ -1,11 +1,12 @@
-import {
+  import {
   Component,
   OnInit,
   ElementRef,
   ViewChild,
   Renderer2,
   Output,
-  EventEmitter
+  EventEmitter,
+  HostListener
 } from "@angular/core";
 import { country } from "./codes";
 
@@ -33,6 +34,15 @@ export class PhoneNumberInputComponent implements OnInit {
 
   @ViewChild("flagDropdown", { read: ElementRef }) flagDropdown: ElementRef;
 
+  @HostListener('window:click', ['$event']) 
+  onClick(event) {
+    const className = event.target.className;
+    if (!className.includes('dropbtn')) {
+      if(!event.target.className.includes('search-form-control'))
+        this.render.removeClass(this.flagDropdown.nativeElement, "show");
+    }
+  }
+
   constructor(private render: Renderer2) {}
 
   ngOnInit() {
@@ -44,6 +54,7 @@ export class PhoneNumberInputComponent implements OnInit {
     if (this.flagDropdown.nativeElement.classList.contains("show")) {
       this.render.removeClass(this.flagDropdown.nativeElement, "show");
     } else {
+      this.formatFlags();
       this.render.addClass(this.flagDropdown.nativeElement, "show");
     }
   }
@@ -51,12 +62,6 @@ export class PhoneNumberInputComponent implements OnInit {
   onFlageSelect(f) {
     this.selectedFlag = f;
     this.render.removeClass(this.flagDropdown.nativeElement, "show");
-  }
-
-  isNumberKey(evt) {
-    const charCode = evt.which ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
-    return true;
   }
 
   onNumberPress(v: string) {
