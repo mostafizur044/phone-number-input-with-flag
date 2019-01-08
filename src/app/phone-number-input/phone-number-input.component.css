@@ -67,6 +67,8 @@
   font-size: 16px;
   border: 1px solid #ccc;
   outline: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .main-container-box .custom-form-control:focus {
